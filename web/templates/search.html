@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-Sci Search</title>
+    <style>
+        body { font-family: Georgia, serif; margin: 2rem; }
+        .hint { font-size: 0.9rem; color: #555; margin-top: 0.5rem; }
+    </style>
+</head>
+<body>
+    <h1>Pop-Sci Search</h1>
+    <form action="/search" method="get">
+        <input type="text" name="q" placeholder="Search..." autofocus>
+        <button type="submit">Search</button>
+    </form>
+    <p class="hint">Operators: && (AND), || (OR), ! (NOT). Space = AND. Example: (climate || weather) !politics</p>
+</body>
+</html>

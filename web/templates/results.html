@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ query }} - Pop-Sci Search</title>
+    <style>
+        body { font-family: Georgia, serif; margin: 2rem; max-width: 800px; }
+        form { margin-bottom: 1.5rem; }
+        .stats { color: #555; margin-bottom: 1rem; }
+        .result { margin-bottom: 1rem; }
+        .result a { color: #0066cc; text-decoration: none; font-weight: bold; }
+        .result a:hover { text-decoration: underline; }
+        .url { font-size: 0.85rem; color: #666; margin-top: 0.2rem; }
+        .pagination { margin-top: 1.5rem; }
+        .pagination a { margin-right: 0.5rem; color: #0066cc; }
+    </style>
+</head>
+<body>
+    <h1>Pop-Sci Search</h1>
+    <form action="/search" method="get">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+    <p class="stats">Found {{ total }} results ({{ "%.3f"|format(time_ms) }} ms)</p>
+    {% for r in results %}
+    <div class="result">
+        <a href="{{ r.url }}" target="_blank">{{ r.title if r.title else '(no title)' }}</a>
+        <div class="url">{{ r.url }}</div>
+    </div>
+    {% endfor %}
+    {% if not results %}
+    <p>No results found.</p>
+    {% endif %}
+    <div class="pagination">
+        {% if has_prev %}
+        <a href="/search?q={{ query }}&page={{ page - 1 }}">Prev</a>
+        {% endif %}
+        {% if has_next %}
+        <a href="/search?q={{ query }}&page={{ page + 1 }}">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+db:
+  path: store/popsci.db
+
+logic:
+  delay: 0
+  max_concurrent: 150
+  user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+  recrawl_days: 7
+  batch_size: 1000
+  min_text_length: 200
+
+sources:
+  - name: livescience
+    sitemap: "https://www.livescience.com/sitemap.xml"
+    domain: livescience.com
+    target: 18000
+
+  - name: sciencealert
+    sitemap: "https://www.sciencealert.com/sitemap.xml"
+    domain: sciencealert.com
+    target: 10000
+
+  - name: space
+    sitemap: "https://www.space.com/sitemap.xml"
+    domain: space.com
+    target: 8000
